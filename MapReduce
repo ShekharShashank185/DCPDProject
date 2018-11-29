@@ -1,0 +1,40 @@
+import os
+import re
+import sys
+import pprint
+
+
+def getText(file):
+    text1 = open(file,'r').read().strip("\n")
+    text2 = text1.lower()
+    text3 = text2.split()
+    return text3
+
+
+
+def mapper(text):
+    mapOut = []
+    VowelRegx = re.compile(r'[aeiou]')
+    for word in text:
+        a = VowelRegx.findall(word)
+        if a != []:
+            mapOut.append((word,len(a)))
+    return mapOut
+
+def reducer(ToReduce):
+    reduced={}
+    for word in ToReduce:
+        if word[0] not in reduced:
+            reduced[word[0]] = (word[1])
+    return reduced
+
+# the file to be processed should be in mentioned path below.In case of different directory location, change the Working directory path in variable path
+  # file name or the file to be processed in working directory should be passed as the argument to the string
+filename = str(sys.argv[1])
+path = 'C:/Users/Shashank/Desktop/Mapred'
+file = os.path.join(path,filename)
+print('Processing file',file)
+Text = getText(file)
+ToReduce = mapper(Text)
+Reduced = reducer(ToReduce)
+pprint.pprint(Reduced)
