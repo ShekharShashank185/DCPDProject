@@ -5,12 +5,8 @@ import pprint
 
 
 def getText(file):
-    text1 = open(file,'r').read().strip("\n")
-    text2 = text1.lower()
-    text3 = text2.split()
-    return text3
-
-
+    text = open(file,'r').read().strip("\n").replace(","," ").replace("."," ").lower().split()
+    return text
 
 def mapper(text):
     mapOut = []
