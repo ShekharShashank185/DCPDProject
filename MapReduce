@@ -5,12 +5,16 @@ import pprint
 
 
 def getText(file):
-    text = open(file,'r').read().strip("\n").replace(","," ").replace("."," ").lower().split()
+# removing the comma and periods as well as changing the case to lower case.
+    text = open(file,'r').read().strip("\n").replace(","," ").replace("."," ").lower()
     return text
 
-def mapper(text):
+def mapper(text1):
+#splitting the input string into a list
+    text = text1.split()
     mapOut = []
     VowelRegx = re.compile(r'[aeiou]')
+# regular expression to check for existence of Vowels.
     for word in text:
         a = VowelRegx.findall(word)
         if a != []:
