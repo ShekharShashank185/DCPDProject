@@ -5,6 +5,7 @@ import pprint
 
 
 def getText(file):
+# function fetches the text to be processed by map-reduce.
 # removing the comma and periods as well as changing the case to lower case.
     text = open(file,'r').read().strip("\n").replace(","," ").replace("."," ").lower()
     return text
@@ -34,7 +35,7 @@ filename = str(sys.argv[1])
 path = 'C:/Users/Shashank/Desktop/Mapred'
 file = os.path.join(path,filename)
 print('Processing file',file)
-Text = getText(file)
+Text = getText(file)  # fetch the text to be processed by Map-reduce.
 ToReduce = mapper(Text)
 Reduced = reducer(ToReduce)
 pprint.pprint(Reduced)
